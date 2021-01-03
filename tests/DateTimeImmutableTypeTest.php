@@ -30,6 +30,13 @@ final class DateTimeImmutableTypeTest extends TestCase
         $this->assertSame($timestamp, $value->getTimestamp());
     }
 
+    public function testNull(): void
+    {
+        $type = new DateTimeImmutableType(DateTimeImmutableType::INTEGER);
+        $this->assertNull($type->convertToDatabaseValue(null));
+        $this->assertNull($type->convertToPhpValue(null));
+    }
+
     public function testIncorrectDatabaseType(): void
     {
         $this->expectException(InvalidArgumentException::class);

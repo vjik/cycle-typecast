@@ -22,7 +22,7 @@ final class Typecaster
     public function afterExtract(array &$data): void
     {
         foreach ($this->config as $column => $type) {
-            if (isset($data[$column])) {
+            if (array_key_exists($column, $data)) {
                 /** @var mixed */
                 $data[$column] = $type->convertToDatabaseValue($data[$column]);
             }
@@ -32,7 +32,7 @@ final class Typecaster
     public function beforeHydrate(array &$data): void
     {
         foreach ($this->config as $column => $type) {
-            if (isset($data[$column])) {
+            if (array_key_exists($column, $data)) {
                 /** @var mixed */
                 $data[$column] = $type->convertToPhpValue($data[$column]);
             }

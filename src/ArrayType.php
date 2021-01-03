@@ -15,8 +15,12 @@ final class ArrayType implements TypeInterface
         $this->delimiter = $delimiter;
     }
 
-    public function convertToDatabaseValue($value): string
+    public function convertToDatabaseValue($value)
     {
+        if ($value === null) {
+            return null;
+        }
+
         if (!is_array($value)) {
             throw new InvalidArgumentException('Incorrect value.');
         }
@@ -26,6 +30,10 @@ final class ArrayType implements TypeInterface
 
     public function convertToPhpValue($value)
     {
+        if ($value === null) {
+            return null;
+        }
+
         if (!is_string($value)) {
             throw new InvalidArgumentException('Incorrect value.');
         }

@@ -30,6 +30,10 @@ final class DateTimeImmutableType implements TypeInterface
 
     public function convertToDatabaseValue($value)
     {
+        if ($value === null) {
+            return null;
+        }
+
         if (!($value instanceof DateTimeImmutable)) {
             throw new InvalidArgumentException('Incorrect value.');
         }
@@ -45,6 +49,10 @@ final class DateTimeImmutableType implements TypeInterface
 
     public function convertToPhpValue($value)
     {
+        if ($value === null) {
+            return null;
+        }
+
         if (!is_string($value)) {
             throw new InvalidArgumentException('Incorrect value.');
         }

@@ -21,16 +21,20 @@ final class ArrayTypeTest extends TestCase
                 'A,B,C',
                 ['A', 'B', 'C'],
             ],
+            'null' => [
+                null,
+                null,
+            ],
         ];
     }
 
     /**
      * @dataProvider dataBase
      *
-     * @param string $databaseValue
-     * @param array $entityValue
+     * @param string|null $databaseValue
+     * @param array|null $entityValue
      */
-    public function testBase(string $databaseValue, array $entityValue): void
+    public function testBase(?string $databaseValue, ?array $entityValue): void
     {
         $type = new ArrayType(',');
 
