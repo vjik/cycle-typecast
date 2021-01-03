@@ -39,8 +39,8 @@ final class UserMapper extends Mapper
         // Typecast configuration
         $this->typecaster = new Typecaster([
             'id' => new UuidType(UuidType::BYTES),
-            'create_date' => new DateTimeImmutableType(DateTimeImmutableType::INTEGER),
-            'modify_date' => new DateTimeImmutableType(DateTimeImmutableType::INTEGER),
+            'create_date' => new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER),
+            'modify_date' => new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER),
             'tags' => new ArrayType(','),
         ]);
         
@@ -82,14 +82,14 @@ Database value: array concatenated into string with delimiter setted in construc
 ### `DateTimeImmutableType`
 
 ```php
-new DateTimeImmutableType(DateTimeImmutableType::INTEGER);
+new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER);
 ```
 
 Entity value: `DateTimeImmutable`.
 
 Database value depends on parameter set in constructor:
 
-- `DateTimeImmutableType::INTEGER`: timestamp as string (example, `1609658768`).
+- `DateTimeImmutableType::TIMESTAMP_INTEGER`: timestamp as string (example, `1609658768`).
 
 ### `UuidType`
 

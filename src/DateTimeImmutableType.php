@@ -10,7 +10,7 @@ use RuntimeException;
 
 final class DateTimeImmutableType implements TypeInterface
 {
-    public const INTEGER = 'integer';
+    public const TIMESTAMP_INTEGER = 'timestamp-integer';
 
     private string $databaseType;
 
@@ -21,7 +21,7 @@ final class DateTimeImmutableType implements TypeInterface
 
     private function setDatabaseType(string $databaseType): void
     {
-        if (!in_array($databaseType, [self::INTEGER])) {
+        if (!in_array($databaseType, [self::TIMESTAMP_INTEGER])) {
             throw new InvalidArgumentException('Incorrect database type.');
         }
 
@@ -39,7 +39,7 @@ final class DateTimeImmutableType implements TypeInterface
         }
 
         switch ($this->databaseType) {
-            case self::INTEGER:
+            case self::TIMESTAMP_INTEGER:
                 return (string)$value->getTimestamp();
 
             default:
@@ -58,7 +58,7 @@ final class DateTimeImmutableType implements TypeInterface
         }
 
         switch ($this->databaseType) {
-            case self::INTEGER:
+            case self::TIMESTAMP_INTEGER:
                 return (new DateTimeImmutable())->setTimestamp((int)$value);
 
             default:

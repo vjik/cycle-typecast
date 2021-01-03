@@ -20,7 +20,7 @@ final class DateTimeImmutableTypeTest extends TestCase
         $databaseValue = (string)$timestamp;
         $entityValue = (new DateTimeImmutable())->setTimestamp($timestamp);
 
-        $type = new DateTimeImmutableType(DateTimeImmutableType::INTEGER);
+        $type = new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER);
 
         $value = $type->convertToDatabaseValue($entityValue);
         $this->assertSame($databaseValue, $value);
@@ -32,7 +32,7 @@ final class DateTimeImmutableTypeTest extends TestCase
 
     public function testNull(): void
     {
-        $type = new DateTimeImmutableType(DateTimeImmutableType::INTEGER);
+        $type = new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER);
         $this->assertNull($type->convertToDatabaseValue(null));
         $this->assertNull($type->convertToPhpValue(null));
     }
@@ -45,7 +45,7 @@ final class DateTimeImmutableTypeTest extends TestCase
 
     public function testConvertToDatabaseValueIncorrectValue(): void
     {
-        $type = new DateTimeImmutableType(DateTimeImmutableType::INTEGER);
+        $type = new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER);
 
         $this->expectException(InvalidArgumentException::class);
         $type->convertToDatabaseValue(42);
@@ -56,7 +56,7 @@ final class DateTimeImmutableTypeTest extends TestCase
         $property = (new ReflectionClass(DateTimeImmutableType::class))->getProperty('databaseType');
         $property->setAccessible(true);
 
-        $type = new DateTimeImmutableType(DateTimeImmutableType::INTEGER);
+        $type = new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER);
         $property->setValue($type, 'incorrect');
 
         $this->expectException(RuntimeException::class);
@@ -68,7 +68,7 @@ final class DateTimeImmutableTypeTest extends TestCase
         $property = (new ReflectionClass(DateTimeImmutableType::class))->getProperty('databaseType');
         $property->setAccessible(true);
 
-        $type = new DateTimeImmutableType(DateTimeImmutableType::INTEGER);
+        $type = new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER);
         $property->setValue($type, 'incorrect');
 
         $this->expectException(RuntimeException::class);
@@ -77,7 +77,7 @@ final class DateTimeImmutableTypeTest extends TestCase
 
     public function testConertToPhpValueWithIntegerValue(): void
     {
-        $type = new DateTimeImmutableType(DateTimeImmutableType::INTEGER);
+        $type = new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER);
 
         $this->expectException(InvalidArgumentException::class);
         $type->convertToPhpValue(42);
