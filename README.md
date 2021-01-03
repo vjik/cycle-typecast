@@ -64,6 +64,42 @@ final class UserMapper extends Mapper
 }
 ```
 
+## Columns
+
+### `ArrayColumn`
+
+```php
+new ArrayColumn(',');
+``` 
+
+Entity value: array of strings. For example, `['A', 'B', 'C']`.
+
+Database value: array concatenated into string with delimiter setted in constructor. For example, `A,B,C`.
+
+### `DateTimeImmutableColumn`
+
+```php
+new DateTimeImmutableColumn(DateTimeImmutableColumn::INTEGER);
+```
+
+Entity value: `DateTimeImmutable`.
+
+Database value depends on parameter set in constructor:
+
+- `DateTimeImmutableColumn::INTEGER`: timestamp as string (example, `1609658768`).
+
+### `UuidColumn`
+
+```php
+new UuidColumn(UuidColumn::BYTES);
+```
+
+Entity value: string standard representation of the UUID. For example, `1f2d3897-a226-4eec-bd2c-d0145ef25df9`.
+
+Database value depends on parameter set in constructor:
+
+- `UuidColumn::BYTES`: binary string representation of the UUID.
+
 ## Testing
 
 ### Unit testing
