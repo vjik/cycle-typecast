@@ -15,7 +15,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="Cycle Columns tests">
+        <testsuite name="Cycle Typecast tests">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>

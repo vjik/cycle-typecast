@@ -2,34 +2,34 @@
 
 declare(strict_types=1);
 
-namespace Vjik\CycleColumns;
+namespace Vjik\CycleTypecast;
 
 use Exception;
 use InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 use RuntimeException;
 
-final class UuidColumn implements ColumnInterface
+final class UuidType implements TypeInterface
 {
     public const BYTES = 'bytes';
 
-    private string $columnType;
+    private string $databaseType;
 
-    public function __construct(string $columnType)
+    public function __construct(string $databaseType)
     {
-        $this->setColumnType($columnType);
+        $this->setDatabaseType($databaseType);
     }
 
-    private function setColumnType(string $columnType): void
+    private function setDatabaseType(string $databaseType): void
     {
-        if (!in_array($columnType, [self::BYTES])) {
-            throw new InvalidArgumentException('Incorrect column type.');
+        if (!in_array($databaseType, [self::BYTES])) {
+            throw new InvalidArgumentException('Incorrect database type.');
         }
 
-        $this->columnType = $columnType;
+        $this->databaseType = $databaseType;
     }
 
-    public function afterExtract($value): string
+    public function convertToDatabaseValue($value)
     {
         if (!is_string($value)) {
             throw new InvalidArgumentException('Incorrect value.');
@@ -41,7 +41,7 @@ final class UuidColumn implements ColumnInterface
             throw new InvalidArgumentException();
         }
 
-        switch ($this->columnType) {
+        switch ($this->databaseType) {
             case self::BYTES:
                 return $uuid->getBytes();
 
@@ -50,9 +50,13 @@ final class UuidColumn implements ColumnInterface
         }
     }
 
-    public function beforeHydrate(string $value)
+    public function convertToPhpValue($value)
     {
-        switch ($this->columnType) {
+        if (!is_string($value)) {
+            throw new InvalidArgumentException('Incorrect value.');
+        }
+
+        switch ($this->databaseType) {
             case self::BYTES:
                 try {
                     $uuid = Uuid::fromBytes($value);

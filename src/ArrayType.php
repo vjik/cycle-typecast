@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Vjik\CycleColumns;
+namespace Vjik\CycleTypecast;
 
 use InvalidArgumentException;
 
-final class ArrayColumn implements ColumnInterface
+final class ArrayType implements TypeInterface
 {
     private string $delimiter;
 
@@ -15,7 +15,7 @@ final class ArrayColumn implements ColumnInterface
         $this->delimiter = $delimiter;
     }
 
-    public function afterExtract($value): string
+    public function convertToDatabaseValue($value): string
     {
         if (!is_array($value)) {
             throw new InvalidArgumentException('Incorrect value.');
@@ -24,8 +24,12 @@ final class ArrayColumn implements ColumnInterface
         return implode($this->delimiter, $value);
     }
 
-    public function beforeHydrate(string $value)
+    public function convertToPhpValue($value)
     {
+        if (!is_string($value)) {
+            throw new InvalidArgumentException('Incorrect value.');
+        }
+
         if ($value === '') {
             return [];
         }

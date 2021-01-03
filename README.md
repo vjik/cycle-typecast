@@ -1,23 +1,23 @@
-# Cycle Columns
+# Cycle Typecast
 
-[![Latest Stable Version](https://poser.pugx.org/vjik/cycle-columns/v/stable.png)](https://packagist.org/packages/vjik/cycle-columns)
-[![Total Downloads](https://poser.pugx.org/vjik/cycle-columns/downloads.png)](https://packagist.org/packages/vjik/cycle-columns)
-[![Build status](https://github.com/vjik/cycle-columns/workflows/build/badge.svg)](https://github.com/vjik/cycle-columns/actions?query=workflow%3Abuild)
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fvjik%2Fcycle-columns%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/vjik/cycle-columns/master)
-[![static analysis](https://github.com/vjik/cycle-columns/workflows/static%20analysis/badge.svg)](https://github.com/vjik/cycle-columns/actions?query=workflow%3A%22static+analysis%22)
+[![Latest Stable Version](https://poser.pugx.org/vjik/cycle-typecast/v/stable.png)](https://packagist.org/packages/vjik/cycle-typecast)
+[![Total Downloads](https://poser.pugx.org/vjik/cycle-typecast/downloads.png)](https://packagist.org/packages/vjik/cycle-typecast)
+[![Build status](https://github.com/vjik/cycle-typecast/workflows/build/badge.svg)](https://github.com/vjik/cycle-typecast/actions?query=workflow%3Abuild)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fvjik%2Fcycle-typecast%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/vjik/cycle-typecast/master)
+[![static analysis](https://github.com/vjik/cycle-typecast/workflows/static%20analysis/badge.svg)](https://github.com/vjik/cycle-typecast/actions?query=workflow%3A%22static+analysis%22)
 
 The package provides:
 
-- `ColumnsManager` that help modify data when mapping in [Cycle ORM](https://cycle-orm.dev/);
-- `ColumnInterface` that must be implemented by classes used in `ColumnsManager`;
-- classes for `DateTimeImmutable`, `UUID` and `Array` columns.
+- `Typecaster` that help typecast data when mapping in [Cycle ORM](https://cycle-orm.dev/);
+- `TypeInterface` that must be implemented by classes used in `Typecaster`;
+- classes for `DateTimeImmutable`, `UUID` and `Array` types.
 
 ## Installation
 
 The package could be installed with [composer](https://getcomposer.org/download/):
 
 ```shell
-composer require vjik/cycle-columns --prefer-dist
+composer require vjik/cycle-typecast --prefer-dist
 ```
 
 ## General usage
@@ -25,23 +25,23 @@ composer require vjik/cycle-columns --prefer-dist
 ```php
 use Cycle\ORM\Mapper\Mapper;
 use Cycle\ORM\ORMInterface;
-use Vjik\CycleColumns\ColumnsManager;
-use Vjik\CycleColumns\ArrayColumn;
-use Vjik\CycleColumns\DateTimeImmutableColumn;
-use Vjik\CycleColumns\UuidColumn;
+use Vjik\CycleTypecast\Typecaster;
+use Vjik\CycleTypecast\ArrayType;
+use Vjik\CycleTypecast\DateTimeImmutableType;
+use Vjik\CycleTypecast\UuidType;
 
 final class UserMapper extends Mapper
 {
-    private ColumnsManager $columnsManager;
+    private Typecaster $typecaster;
 
     public function __construct(ORMInterface $orm, string $role)
     {
-        // Columns manager configuration
-        $this->columnsManager = new ColumnsManager([
-            'id' => new UuidColumn(UuidColumn::BYTES),
-            'create_date' => new DateTimeImmutableColumn(DateTimeImmutableColumn::INTEGER),
-            'modify_date' => new DateTimeImmutableColumn(DateTimeImmutableColumn::INTEGER),
-            'tags' => new ArrayColumn(','),
+        // Typecast configuration
+        $this->typecaster = new Typecaster([
+            'id' => new UuidType(UuidType::BYTES),
+            'create_date' => new DateTimeImmutableType(DateTimeImmutableType::INTEGER),
+            'modify_date' => new DateTimeImmutableType(DateTimeImmutableType::INTEGER),
+            'tags' => new ArrayType(','),
         ]);
         
         parent::__construct($orm, $role);
@@ -51,57 +51,57 @@ final class UserMapper extends Mapper
     {
         $data = parent::extract($entity);
         
-        // Modify data after extract from entity
-        $this->columnsManager->afterExtract($data);
+        // Typecast after extract from entity
+        $this->typecaster->afterExtract($data);
         
         return $data;
     }
 
     public function hydrate($entity, array $data)
     {
-        // Modify data before hydrate entity
-        $this->columnsManager->beforeHydrate($data);
+        // Typecast before hydrate entity
+        $this->typecaster->beforeHydrate($data);
         
         return parent::hydrate($entity, $data);
     }
 }
 ```
 
-## Columns
+## Types
 
-### `ArrayColumn`
+### `ArrayType`
 
 ```php
-new ArrayColumn(',');
+new ArrayType(',');
 ``` 
 
 Entity value: array of strings. For example, `['A', 'B', 'C']`.
 
 Database value: array concatenated into string with delimiter setted in constructor. For example, `A,B,C`.
 
-### `DateTimeImmutableColumn`
+### `DateTimeImmutableType`
 
 ```php
-new DateTimeImmutableColumn(DateTimeImmutableColumn::INTEGER);
+new DateTimeImmutableType(DateTimeImmutableType::INTEGER);
 ```
 
 Entity value: `DateTimeImmutable`.
 
 Database value depends on parameter set in constructor:
 
-- `DateTimeImmutableColumn::INTEGER`: timestamp as string (example, `1609658768`).
+- `DateTimeImmutableType::INTEGER`: timestamp as string (example, `1609658768`).
 
-### `UuidColumn`
+### `UuidType`
 
 ```php
-new UuidColumn(UuidColumn::BYTES);
+new UuidType(UuidType::BYTES);
 ```
 
 Entity value: string standard representation of the UUID. For example, `1f2d3897-a226-4eec-bd2c-d0145ef25df9`.
 
 Database value depends on parameter set in constructor:
 
-- `UuidColumn::BYTES`: binary string representation of the UUID.
+- `UuidType::BYTES`: binary string representation of the UUID.
 
 ## Testing
 
@@ -132,5 +132,5 @@ The code is statically analyzed with [Psalm](https://psalm.dev/). To run static 
 
 ## License
 
-The Cycle Columns is free software. It is released under the terms of the BSD License.
+The Cycle Typecast is free software. It is released under the terms of the BSD License.
 Please see [`LICENSE`](./LICENSE.md) for more information.

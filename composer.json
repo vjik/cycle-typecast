@@ -1,15 +1,15 @@
 {
-    "name": "vjik/cycle-columns",
+    "name": "vjik/cycle-typecast",
     "type": "library",
-    "description": "Helper of modify data when mapping in Cycle ORM",
+    "description": "Helper of typecast data when mapping in Cycle ORM",
     "keywords": [
         "cycle",
         "datamapper"
     ],
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/vjik/cycle-columns/issues?state=open",
-        "source": "https://github.com/vjik/cycle-columns"
+        "issues": "https://github.com/vjik/cycle-typecast/issues?state=open",
+        "source": "https://github.com/vjik/cycle-typecast"
     },
     "minimum-stability": "stable",
     "require": {
@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Vjik\\CycleColumns\\": "src"
+            "Vjik\\CycleTypecast\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Vjik\\CycleColumns\\Tests\\": "tests"
+            "Vjik\\CycleTypecast\\Tests\\": "tests"
         }
     },
     "scripts": {
