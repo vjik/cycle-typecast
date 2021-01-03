@@ -1,14 +1,15 @@
 {
     "name": "vjik/cycle-columns",
     "type": "library",
-    "description": "_____",
+    "description": "Helper of modify data when mapping in Cycle ORM",
     "keywords": [
-        "cycle"
+        "cycle",
+        "datamapper"
     ],
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/vjik/_____/issues?state=open",
-        "source": "https://github.com/vjik/_____"
+        "issues": "https://github.com/vjik/cycle-columns/issues?state=open",
+        "source": "https://github.com/vjik/cycle-columns"
     },
     "minimum-stability": "stable",
     "require": {

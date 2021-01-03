@@ -1,4 +1,4 @@
-Copyright © 2020 by Sergei Predvoditelev (https://predvoditelev.ru)
+Copyright © 2021 by Sergei Predvoditelev (https://predvoditelev.ru)
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
