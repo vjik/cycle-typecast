@@ -7,9 +7,7 @@ namespace Vjik\CycleColumns\Tests;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
-use Reflection;
 use ReflectionClass;
-use ReflectionObject;
 use RuntimeException;
 use Vjik\CycleColumns\UuidColumn;
 
