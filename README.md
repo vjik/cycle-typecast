@@ -2,6 +2,9 @@
 
 [![Latest Stable Version](https://poser.pugx.org/vjik/cycle-columns/v/stable.png)](https://packagist.org/packages/vjik/cycle-columns)
 [![Total Downloads](https://poser.pugx.org/vjik/cycle-columns/downloads.png)](https://packagist.org/packages/vjik/cycle-columns)
+[![Build status](https://github.com/vjik/cycle-columns/workflows/build/badge.svg)](https://github.com/vjik/cycle-columns/actions?query=workflow%3Abuild)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fvjik%2Fcycle-columns%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/vjik/cycle-columns/master)
+[![static analysis](https://github.com/vjik/cycle-columns/workflows/static%20analysis/badge.svg)](https://github.com/vjik/cycle-columns/actions?query=workflow%3A%22static+analysis%22)
 
 The package provides:
 

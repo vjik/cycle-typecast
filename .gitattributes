@@ -22,6 +22,7 @@
 *.ttf  binary
 
 # Ignore some meta files when creating an archive of this repository
+/.github            export-ignore
 /.editorconfig      export-ignore
 /.gitattributes     export-ignore
 /.gitignore         export-ignore
