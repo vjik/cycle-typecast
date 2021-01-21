@@ -79,7 +79,7 @@ Entity value: array of strings. For example, `['A', 'B', 'C']`.
 
 Database value: array concatenated into string with delimiter setted in constructor. For example, `A,B,C`.
 
-### `DateTimeImmutableToTimestampIntegerType`
+### `DateTimeImmutableToIntegerType`
 
 ```php
 new DateTimeImmutableToIntegerType();

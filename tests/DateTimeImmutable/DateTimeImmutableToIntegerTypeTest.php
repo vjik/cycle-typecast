@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 use Vjik\CycleTypecast\DateTimeImmutable\DateTimeImmutableToIntegerType;
 
-final class DateTimeImmutableToTimestampIntegerTypeTest extends TestCase
+final class DateTimeImmutableToIntegerTypeTest extends TestCase
 {
     public function testBase(): void
     {
