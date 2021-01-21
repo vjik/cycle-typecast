@@ -27,7 +27,7 @@ use Cycle\ORM\Mapper\Mapper;
 use Cycle\ORM\ORMInterface;
 use Vjik\CycleTypecast\Typecaster;
 use Vjik\CycleTypecast\ArrayType;
-use Vjik\CycleTypecast\DateTimeImmutableType;
+use Vjik\CycleTypecast\DateTimeImmutable\DateTimeImmutableToIntegerType;
 use Vjik\CycleTypecast\UuidType;
 
 final class UserMapper extends Mapper
@@ -39,8 +39,8 @@ final class UserMapper extends Mapper
         // Typecast configuration
         $this->typecaster = new Typecaster([
             'id' => new UuidType(UuidType::BYTES),
-            'create_date' => new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER),
-            'modify_date' => new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER),
+            'create_date' => new DateTimeImmutableToIntegerType(),
+            'modify_date' => new DateTimeImmutableToIntegerType(),
             'tags' => new ArrayType(','),
         ]);
         
@@ -79,17 +79,15 @@ Entity value: array of strings. For example, `['A', 'B', 'C']`.
 
 Database value: array concatenated into string with delimiter setted in constructor. For example, `A,B,C`.
 
-### `DateTimeImmutableType`
+### `DateTimeImmutableToTimestampIntegerType`
 
 ```php
-new DateTimeImmutableType(DateTimeImmutableType::TIMESTAMP_INTEGER);
+new DateTimeImmutableToIntegerType();
 ```
 
 Entity value: `DateTimeImmutable`.
 
-Database value depends on parameter set in constructor:
-
-- `DateTimeImmutableType::TIMESTAMP_INTEGER`: timestamp as string (example, `1609658768`).
+Database value: timestamp as string (example, `1609658768`).
 
 ### `UuidType`
 
