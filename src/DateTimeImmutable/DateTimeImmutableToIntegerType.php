@@ -12,12 +12,7 @@ use function is_string;
 
 final class DateTimeImmutableToIntegerType extends DateTimeImmutableType
 {
-    /**
-     * @param DateTimeImmutable $value
-     *
-     * @return string
-     */
-    protected function toDatabaseValue(DateTimeImmutable $value)
+    protected function toDatabaseValue(DateTimeImmutable $value): string
     {
         return (string)$value->getTimestamp();
     }

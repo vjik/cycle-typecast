@@ -6,9 +6,9 @@ namespace Vjik\CycleTypecast\Tests;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Vjik\CycleTypecast\ArrayType;
+use Vjik\CycleTypecast\ArrayToStringType;
 
-final class ArrayTypeTest extends TestCase
+final class ArrayToStringTypeTest extends TestCase
 {
     public function dataBase(): array
     {
@@ -36,7 +36,7 @@ final class ArrayTypeTest extends TestCase
      */
     public function testBase(?string $databaseValue, ?array $entityValue): void
     {
-        $type = new ArrayType(',');
+        $type = new ArrayToStringType(',');
 
         $this->assertSame($databaseValue, $type->convertToDatabaseValue($entityValue));
         $this->assertSame($entityValue, $type->convertToPhpValue($databaseValue));
@@ -44,7 +44,7 @@ final class ArrayTypeTest extends TestCase
 
     public function testConvertToDatabaseValueIncorrectValue(): void
     {
-        $type = new ArrayType(',');
+        $type = new ArrayToStringType(',');
 
         $this->expectException(InvalidArgumentException::class);
         $type->convertToDatabaseValue(42);
@@ -52,7 +52,7 @@ final class ArrayTypeTest extends TestCase
 
     public function testConertToPhpValueWithIntegerValue(): void
     {
-        $type = new ArrayType(',');
+        $type = new ArrayToStringType(',');
 
         $this->expectException(InvalidArgumentException::class);
         $type->convertToPhpValue(42);

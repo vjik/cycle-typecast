@@ -26,7 +26,7 @@ composer require vjik/cycle-typecast --prefer-dist
 use Cycle\ORM\Mapper\Mapper;
 use Cycle\ORM\ORMInterface;
 use Vjik\CycleTypecast\Typecaster;
-use Vjik\CycleTypecast\ArrayType;
+use Vjik\CycleTypecast\ArrayToStringType;
 use Vjik\CycleTypecast\DateTimeImmutable\DateTimeImmutableToIntegerType;
 use Vjik\CycleTypecast\UuidType;
 
@@ -41,7 +41,7 @@ final class UserMapper extends Mapper
             'id' => new UuidType(UuidType::BYTES),
             'create_date' => new DateTimeImmutableToIntegerType(),
             'modify_date' => new DateTimeImmutableToIntegerType(),
-            'tags' => new ArrayType(','),
+            'tags' => new ArrayToStringType(','),
         ]);
         
         parent::__construct($orm, $role);
@@ -69,10 +69,10 @@ final class UserMapper extends Mapper
 
 ## Types
 
-### `ArrayType`
+### `ArrayToStringType`
 
 ```php
-new ArrayType(',');
+new ArrayToStringType(',');
 ``` 
 
 Entity value: array of strings. For example, `['A', 'B', 'C']`.

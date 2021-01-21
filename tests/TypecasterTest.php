@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Vjik\CycleTypecast\Tests;
 
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
-use Vjik\CycleTypecast\ArrayType;
 use Vjik\CycleTypecast\Typecaster;
 use Vjik\CycleTypecast\UuidType;
 

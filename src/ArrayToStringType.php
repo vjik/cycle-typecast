@@ -6,7 +6,7 @@ namespace Vjik\CycleTypecast;
 
 use InvalidArgumentException;
 
-final class ArrayType implements TypeInterface
+final class ArrayToStringType implements TypeInterface
 {
     private string $delimiter;
 
