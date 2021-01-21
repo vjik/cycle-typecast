@@ -7,14 +7,14 @@ namespace Vjik\CycleTypecast\Tests;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Vjik\CycleTypecast\Typecaster;
-use Vjik\CycleTypecast\UuidType;
+use Vjik\CycleTypecast\UuidString\UuidStringToBytesType;
 
 final class TypecasterTest extends TestCase
 {
     public function testAfterExtractBase(): void
     {
         $typecaster = new Typecaster([
-            'id' => new UuidType(UuidType::BYTES),
+            'id' => new UuidStringToBytesType(),
         ]);
 
         $uuid = Uuid::fromString('1f2d3897-a226-4eec-bd2c-d0145ef25df9');
@@ -27,7 +27,7 @@ final class TypecasterTest extends TestCase
     public function testAfterExtractNotExistsColumn(): void
     {
         $typecaster = new Typecaster([
-            'id' => new UuidType(UuidType::BYTES),
+            'id' => new UuidStringToBytesType(),
         ]);
 
         $data = ['name' => 'Mike'];
@@ -38,7 +38,7 @@ final class TypecasterTest extends TestCase
     public function testAfterExtractNull(): void
     {
         $typecaster = new Typecaster([
-            'id' => new UuidType(UuidType::BYTES),
+            'id' => new UuidStringToBytesType(),
         ]);
 
         $data = ['id' => null];
@@ -49,7 +49,7 @@ final class TypecasterTest extends TestCase
     public function testBeforeHydrateBase(): void
     {
         $typecaster = new Typecaster([
-            'id' => new UuidType(UuidType::BYTES),
+            'id' => new UuidStringToBytesType(),
         ]);
 
         $uuid = Uuid::fromString('1f2d3897-a226-4eec-bd2c-d0145ef25df9');
@@ -62,7 +62,7 @@ final class TypecasterTest extends TestCase
     public function testBeforeHydrateNotExistsColumn(): void
     {
         $typecaster = new Typecaster([
-            'id' => new UuidType(UuidType::BYTES),
+            'id' => new UuidStringToBytesType(),
         ]);
 
         $data = ['name' => 'Mike'];
@@ -73,7 +73,7 @@ final class TypecasterTest extends TestCase
     public function testBeforeHydrateNull(): void
     {
         $typecaster = new Typecaster([
-            'id' => new UuidType(UuidType::BYTES),
+            'id' => new UuidStringToBytesType(),
         ]);
 
         $data = ['id' => null];

@@ -28,7 +28,7 @@ use Cycle\ORM\ORMInterface;
 use Vjik\CycleTypecast\Typecaster;
 use Vjik\CycleTypecast\ArrayToStringType;
 use Vjik\CycleTypecast\DateTimeImmutable\DateTimeImmutableToIntegerType;
-use Vjik\CycleTypecast\UuidType;
+use Vjik\CycleTypecast\UuidString\UuidStringToBytesType;
 
 final class UserMapper extends Mapper
 {
@@ -38,7 +38,7 @@ final class UserMapper extends Mapper
     {
         // Typecast configuration
         $this->typecaster = new Typecaster([
-            'id' => new UuidType(UuidType::BYTES),
+            'id' => new UuidStringToBytesType(),
             'create_date' => new DateTimeImmutableToIntegerType(),
             'modify_date' => new DateTimeImmutableToIntegerType(),
             'tags' => new ArrayToStringType(','),
@@ -89,17 +89,15 @@ Entity value: `DateTimeImmutable`.
 
 Database value: timestamp as string (example, `1609658768`).
 
-### `UuidType`
+### `UuidStringToBytesType`
 
 ```php
-new UuidType(UuidType::BYTES);
+new UuidStringToBytesType();
 ```
 
 Entity value: string standard representation of the UUID. For example, `1f2d3897-a226-4eec-bd2c-d0145ef25df9`.
 
-Database value depends on parameter set in constructor:
-
-- `UuidType::BYTES`: binary string representation of the UUID.
+Database value: binary string representation of the UUID.
 
 ## Testing
 
