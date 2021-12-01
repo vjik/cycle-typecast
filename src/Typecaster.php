@@ -9,7 +9,7 @@ final class Typecaster
     /**
      * @var array<string, TypeInterface>
      */
-    private array $config = [];
+    private array $config;
 
     /**
      * @param array<string, TypeInterface> $config
