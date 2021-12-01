@@ -25,6 +25,7 @@ final class ArrayToStringType implements TypeInterface
             throw new InvalidArgumentException('Incorrect value.');
         }
 
+        /** @psalm-suppress MixedArgumentTypeCoercion */
         return implode($this->delimiter, $value);
     }
 
