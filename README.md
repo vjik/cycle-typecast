@@ -37,8 +37,8 @@ final class UserTypecastHandler extends Vjik\CycleTypecast\TypecastHandler
     {
         return [
             'id' => new UuidStringToBytesType(),
-            'create_date' => new DateTimeImmutableToIntegerType(),
-            'modify_date' => new DateTimeImmutableToIntegerType(),
+            'createDate' => new DateTimeImmutableToIntegerType(),
+            'modifyDate' => new DateTimeImmutableToIntegerType(),
             'tags' => new ArrayToStringType(','),
         ];
     }
@@ -64,8 +64,8 @@ final class UserMapper extends PromiseMapper
         // Typecast configuration
         $this->typecaster = new Typecaster([
             'id' => new UuidStringToBytesType(),
-            'create_date' => new DateTimeImmutableToIntegerType(),
-            'modify_date' => new DateTimeImmutableToIntegerType(),
+            'createDate' => new DateTimeImmutableToIntegerType(),
+            'modifyDate' => new DateTimeImmutableToIntegerType(),
             'tags' => new ArrayToStringType(','),
         ]);
         
