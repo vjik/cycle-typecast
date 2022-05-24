@@ -52,15 +52,13 @@ final class UserMapper extends Mapper
         $data = parent::extract($entity);
         
         // Typecast after extract from entity
-        $this->typecaster->afterExtract($data);
-        
-        return $data;
+        return $this->typecaster->prepareAfterExtract($data);
     }
 
     public function hydrate($entity, array $data)
     {
         // Typecast before hydrate entity
-        $this->typecaster->beforeHydrate($data);
+        $data = $this->typecaster->prepareBeforeHydrate($data);
         
         return parent::hydrate($entity, $data);
     }

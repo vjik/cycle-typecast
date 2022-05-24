@@ -11,7 +11,7 @@ use Vjik\CycleTypecast\UuidString\UuidStringToBytesType;
 
 final class TypecasterTest extends TestCase
 {
-    public function testAfterExtractBase(): void
+    public function testPrepareAfterExtractBase(): void
     {
         $typecaster = new Typecaster([
             'id' => new UuidStringToBytesType(),
@@ -19,34 +19,31 @@ final class TypecasterTest extends TestCase
 
         $uuid = Uuid::fromString('1f2d3897-a226-4eec-bd2c-d0145ef25df9');
 
-        $data = ['id' => $uuid->toString()];
-        $typecaster->afterExtract($data);
+        $data = $typecaster->prepareAfterExtract(['id' => $uuid->toString()]);
         $this->assertSame(['id' => $uuid->getBytes()], $data);
     }
 
-    public function testAfterExtractNotExistsColumn(): void
+    public function testPrepareAfterExtractNotExistsColumn(): void
     {
         $typecaster = new Typecaster([
             'id' => new UuidStringToBytesType(),
         ]);
 
-        $data = ['name' => 'Mike'];
-        $typecaster->afterExtract($data);
+        $data = $typecaster->prepareAfterExtract(['name' => 'Mike']);
         $this->assertSame(['name' => 'Mike'], $data);
     }
 
-    public function testAfterExtractNull(): void
+    public function testPrepareAfterExtractNull(): void
     {
         $typecaster = new Typecaster([
             'id' => new UuidStringToBytesType(),
         ]);
 
-        $data = ['id' => null];
-        $typecaster->afterExtract($data);
+        $data = $typecaster->prepareAfterExtract(['id' => null]);
         $this->assertSame(['id' => null], $data);
     }
 
-    public function testBeforeHydrateBase(): void
+    public function testPrepareBeforeHydrateBase(): void
     {
         $typecaster = new Typecaster([
             'id' => new UuidStringToBytesType(),
@@ -54,30 +51,27 @@ final class TypecasterTest extends TestCase
 
         $uuid = Uuid::fromString('1f2d3897-a226-4eec-bd2c-d0145ef25df9');
 
-        $data = ['id' => $uuid->getBytes()];
-        $typecaster->beforeHydrate($data);
+        $data = $typecaster->prepareBeforeHydrate(['id' => $uuid->getBytes()]);
         $this->assertSame(['id' => $uuid->toString()], $data);
     }
 
-    public function testBeforeHydrateNotExistsColumn(): void
+    public function testPrepareBeforeHydrateNotExistsColumn(): void
     {
         $typecaster = new Typecaster([
             'id' => new UuidStringToBytesType(),
         ]);
 
-        $data = ['name' => 'Mike'];
-        $typecaster->beforeHydrate($data);
+        $data = $typecaster->prepareBeforeHydrate(['name' => 'Mike']);
         $this->assertSame(['name' => 'Mike'], $data);
     }
 
-    public function testBeforeHydrateNull(): void
+    public function testPrepareBeforeHydrateNull(): void
     {
         $typecaster = new Typecaster([
             'id' => new UuidStringToBytesType(),
         ]);
 
-        $data = ['id' => null];
-        $typecaster->beforeHydrate($data);
+        $data = $typecaster->prepareBeforeHydrate(['id' => null]);
         $this->assertSame(['id' => null], $data);
     }
 }
