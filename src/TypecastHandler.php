@@ -12,14 +12,14 @@ abstract class TypecastHandler implements CastableInterface, UncastableInterface
     private Typecaster $typecaster;
     private array $supportedKeys;
 
-    public function __construct()
+    final public function __construct()
     {
         $config = $this->getConfig();
         $this->supportedKeys = array_keys($config);
         $this->typecaster = new Typecaster($config);
     }
 
-    public function setRules(array $rules): array
+    final public function setRules(array $rules): array
     {
         foreach ($rules as $key => $_rule) {
             if (in_array($key, $this->supportedKeys, true)) {
@@ -30,12 +30,12 @@ abstract class TypecastHandler implements CastableInterface, UncastableInterface
         return $rules;
     }
 
-    public function cast(array $data): array
+    final public function cast(array $data): array
     {
         return $this->typecaster->prepareBeforeHydrate($data);
     }
 
-    public function uncast(array $data): array
+    final public function uncast(array $data): array
     {
         return $this->typecaster->prepareAfterExtract($data);
     }
