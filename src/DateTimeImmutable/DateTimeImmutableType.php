@@ -10,7 +10,7 @@ use Vjik\CycleTypecast\TypeInterface;
 
 abstract class DateTimeImmutableType implements TypeInterface
 {
-    public function convertToDatabaseValue($value)
+    public function convertToDatabaseValue(mixed $value): mixed
     {
         if ($value === null) {
             return null;
@@ -23,14 +23,9 @@ abstract class DateTimeImmutableType implements TypeInterface
         return $this->toDatabaseValue($value);
     }
 
-    /**
-     * @param DateTimeImmutable $value
-     *
-     * @return mixed
-     */
-    abstract protected function toDatabaseValue(DateTimeImmutable $value);
+    abstract protected function toDatabaseValue(DateTimeImmutable $value): mixed;
 
-    public function convertToPhpValue($value)
+    public function convertToPhpValue(mixed $value): mixed
     {
         if ($value === null) {
             return null;
@@ -39,10 +34,5 @@ abstract class DateTimeImmutableType implements TypeInterface
         return $this->toPhpValue($value);
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return DateTimeImmutable
-     */
-    abstract protected function toPhpValue($value): DateTimeImmutable;
+    abstract protected function toPhpValue(mixed $value): DateTimeImmutable;
 }

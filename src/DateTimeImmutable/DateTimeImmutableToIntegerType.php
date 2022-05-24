@@ -17,7 +17,7 @@ final class DateTimeImmutableToIntegerType extends DateTimeImmutableType
         return (string)$value->getTimestamp();
     }
 
-    protected function toPhpValue($value): DateTimeImmutable
+    protected function toPhpValue(mixed $value): DateTimeImmutable
     {
         if (!is_string($value) && !is_int($value)) {
             throw new InvalidArgumentException('Incorrect value.');

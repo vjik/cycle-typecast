@@ -19,7 +19,7 @@ final class Typecaster
         $this->config = $config;
     }
 
-    public function afterExtract(array &$data): void
+    public function prepareAfterExtract(array $data): array
     {
         foreach ($this->config as $column => $type) {
             if (array_key_exists($column, $data)) {
@@ -27,9 +27,10 @@ final class Typecaster
                 $data[$column] = $type->convertToDatabaseValue($data[$column]);
             }
         }
+        return $data;
     }
 
-    public function beforeHydrate(array &$data): void
+    public function prepareBeforeHydrate(array $data): array
     {
         foreach ($this->config as $column => $type) {
             if (array_key_exists($column, $data)) {
@@ -37,5 +38,6 @@ final class Typecaster
                 $data[$column] = $type->convertToPhpValue($data[$column]);
             }
         }
+        return $data;
     }
 }
