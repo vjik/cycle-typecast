@@ -1,9 +1,10 @@
 {
     "name": "vjik/cycle-typecast",
     "type": "library",
-    "description": "Helper of typecast data when mapping in Cycle ORM",
+    "description": "Helper of typecast data in Cycle ORM",
     "keywords": [
         "cycle",
+        "typecast",
         "datamapper"
     ],
     "license": "BSD-3-Clause",

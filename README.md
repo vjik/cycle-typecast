@@ -8,7 +8,7 @@
 
 The package provides:
 
-- `Typecaster` that help typecast data for [Cycle ORM](https://cycle-orm.dev/);
+- `Typecaster` that help typecast data in [Cycle ORM](https://cycle-orm.dev/);
 - `TypeInterface` that must be implemented by classes used in `Typecaster`;
 - Abstract `TypecastHandler` that used `Typecaster` for typecast data;
 - classes for `DateTimeImmutable`, `UUID` and `Array` types.
