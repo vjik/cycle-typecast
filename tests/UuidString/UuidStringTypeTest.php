@@ -6,6 +6,7 @@ namespace Vjik\CycleTypecast\Tests\UuidString;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Vjik\CycleTypecast\Tests\Support\StubUuidStringType;
 
 final class UuidStringTypeTest extends TestCase
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vjik\CycleTypecast\Tests\DateTimeImmutable;
+namespace Vjik\CycleTypecast\Tests\Support;
 
 use DateTimeImmutable;
 use Vjik\CycleTypecast\DateTimeImmutable\DateTimeImmutableType;

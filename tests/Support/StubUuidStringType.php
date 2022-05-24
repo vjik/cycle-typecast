@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vjik\CycleTypecast\Tests\UuidString;
+namespace Vjik\CycleTypecast\Tests\Support;
 
 use Ramsey\Uuid\UuidInterface;
 use Vjik\CycleTypecast\UuidString\UuidStringType;
