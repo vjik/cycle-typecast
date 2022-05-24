@@ -8,8 +8,9 @@
 
 The package provides:
 
-- `Typecaster` that help typecast data when mapping in [Cycle ORM](https://cycle-orm.dev/);
+- `Typecaster` that help typecast data for [Cycle ORM](https://cycle-orm.dev/);
 - `TypeInterface` that must be implemented by classes used in `Typecaster`;
+- Abstract `TypecastHandler` that used `Typecaster` for typecast data;
 - classes for `DateTimeImmutable`, `UUID` and `Array` types.
 
 ## Installation
@@ -20,17 +21,41 @@ The package could be installed with [composer](https://getcomposer.org/download/
 composer require vjik/cycle-typecast --prefer-dist
 ```
 
-## General usage
+## General Usage
+
+### Custom Typecast Handler
 
 ```php
-use Cycle\ORM\Mapper\Mapper;
+use Vjik\CycleTypecast\ArrayToStringType;
+use Vjik\CycleTypecast\DateTimeImmutable\DateTimeImmutableToIntegerType;
+use Vjik\CycleTypecast\TypecastHandler;
+use Vjik\CycleTypecast\UuidString\UuidStringToBytesType;
+
+final class UserTypecastHandler extends Vjik\CycleTypecast\TypecastHandler
+{
+    protected function getConfig(): array
+    {
+        return [
+            'id' => new UuidStringToBytesType(),
+            'create_date' => new DateTimeImmutableToIntegerType(),
+            'modify_date' => new DateTimeImmutableToIntegerType(),
+            'tags' => new ArrayToStringType(','),
+        ];
+    }
+}
+```
+
+### Custom Mapper
+
+```php
 use Cycle\ORM\ORMInterface;
+use Cycle\ORM\PromiseMapper\PromiseMapper;
 use Vjik\CycleTypecast\Typecaster;
 use Vjik\CycleTypecast\ArrayToStringType;
 use Vjik\CycleTypecast\DateTimeImmutable\DateTimeImmutableToIntegerType;
 use Vjik\CycleTypecast\UuidString\UuidStringToBytesType;
 
-final class UserMapper extends Mapper
+final class UserMapper extends PromiseMapper
 {
     private Typecaster $typecaster;
 
@@ -99,7 +124,7 @@ Database value: binary string representation of the UUID.
 
 ## Testing
 
-### Unit testing
+### Unit Testing
 
 The package is tested with [PHPUnit](https://phpunit.de/). To run tests:
 
@@ -107,7 +132,7 @@ The package is tested with [PHPUnit](https://phpunit.de/). To run tests:
 ./vendor/bin/phpunit
 ```
 
-### Mutation testing
+### Mutation Testing
 
 The package tests are checked with [Infection](https://infection.github.io/) mutation framework with
 [Infection Static Analysis Plugin](https://github.com/Roave/infection-static-analysis-plugin). To run it:
@@ -116,7 +141,7 @@ The package tests are checked with [Infection](https://infection.github.io/) mut
 ./vendor/bin/roave-infection-static-analysis-plugin
 ```
 
-### Static analysis
+### Static Analysis
 
 The code is statically analyzed with [Psalm](https://psalm.dev/). To run static analysis:
 
