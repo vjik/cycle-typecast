@@ -9,7 +9,7 @@ use Vjik\CycleTypecast\DateTimeImmutable\DateTimeImmutableType;
 
 final class StubDateTimeImmutableType extends DateTimeImmutableType
 {
-    protected function toDatabaseValue(DateTimeImmutable $value)
+    protected function toDatabaseValue(DateTimeImmutable $value): mixed
     {
         return $value->getTimestamp();
     }

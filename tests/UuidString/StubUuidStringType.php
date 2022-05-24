@@ -9,12 +9,12 @@ use Vjik\CycleTypecast\UuidString\UuidStringType;
 
 final class StubUuidStringType extends UuidStringType
 {
-    protected function toDatabaseValue(UuidInterface $value)
+    protected function toDatabaseValue(UuidInterface $value): mixed
     {
         return $value->toString();
     }
 
-    protected function toPhpValue($value): string
+    protected function toPhpValue(mixed $value): string
     {
         return $value;
     }

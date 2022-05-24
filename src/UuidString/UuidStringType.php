@@ -12,7 +12,7 @@ use Vjik\CycleTypecast\TypeInterface;
 
 abstract class UuidStringType implements TypeInterface
 {
-    public function convertToDatabaseValue($value)
+    public function convertToDatabaseValue(mixed $value): mixed
     {
         if ($value === null) {
             return null;
@@ -31,14 +31,9 @@ abstract class UuidStringType implements TypeInterface
         return $this->toDatabaseValue($uuid);
     }
 
-    /**
-     * @param UuidInterface $value
-     *
-     * @return mixed
-     */
-    abstract protected function toDatabaseValue(UuidInterface $value);
+    abstract protected function toDatabaseValue(UuidInterface $value): mixed;
 
-    public function convertToPhpValue($value)
+    public function convertToPhpValue(mixed $value): mixed
     {
         if ($value === null) {
             return null;
@@ -47,10 +42,5 @@ abstract class UuidStringType implements TypeInterface
         return $this->toPhpValue($value);
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return string
-     */
-    abstract protected function toPhpValue($value): string;
+    abstract protected function toPhpValue(mixed $value): string;
 }

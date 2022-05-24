@@ -6,17 +6,7 @@ namespace Vjik\CycleTypecast;
 
 interface TypeInterface
 {
-    /**
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    public function convertToDatabaseValue($value);
+    public function convertToDatabaseValue(mixed $value): mixed;
 
-    /**
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    public function convertToPhpValue($value);
+    public function convertToPhpValue(mixed $value): mixed;
 }

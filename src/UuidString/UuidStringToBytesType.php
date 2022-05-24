@@ -16,7 +16,7 @@ final class UuidStringToBytesType extends UuidStringType
         return $value->getBytes();
     }
 
-    protected function toPhpValue($value): string
+    protected function toPhpValue(mixed $value): string
     {
         if (!is_string($value)) {
             throw new InvalidArgumentException('Incorrect value.');
