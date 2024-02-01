@@ -5,13 +5,14 @@
 [![Build status](https://github.com/vjik/cycle-typecast/workflows/build/badge.svg)](https://github.com/vjik/cycle-typecast/actions?query=workflow%3Abuild)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fvjik%2Fcycle-typecast%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/vjik/cycle-typecast/master)
 [![static analysis](https://github.com/vjik/cycle-typecast/workflows/static%20analysis/badge.svg)](https://github.com/vjik/cycle-typecast/actions?query=workflow%3A%22static+analysis%22)
+[![psalm-level](https://shepherd.dev/github/vjik/cycle-typecast/level.svg)](https://shepherd.dev/github/vjik/cycle-typecast)
 
 The package provides:
 
 - `Typecaster` that help typecast data in [Cycle ORM](https://cycle-orm.dev/);
 - `TypeInterface` that must be implemented by classes used in `Typecaster`;
-- Abstract `TypecastHandler` that used `Typecaster` for typecast data;
-- classes for `DateTimeImmutable`, `UUID` and `Array` types.
+- abstract `TypecastHandler` that used `Typecaster` for typecast data;
+- classes for `DateTimeImmutable`, `UUID`, `Array` and `Enum` types.
 
 ## Installation
 
