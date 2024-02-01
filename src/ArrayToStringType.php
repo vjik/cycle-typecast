@@ -8,8 +8,14 @@ use InvalidArgumentException;
 
 final class ArrayToStringType implements TypeInterface
 {
+    /**
+     * @psalm-var non-empty-string
+     */
     private string $delimiter;
 
+    /**
+     * @psalm-param non-empty-string $delimiter
+     */
     public function __construct(string $delimiter)
     {
         $this->delimiter = $delimiter;
