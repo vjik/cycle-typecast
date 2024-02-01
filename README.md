@@ -18,7 +18,7 @@ The package provides:
 The package could be installed with [composer](https://getcomposer.org/download/):
 
 ```shell
-composer require vjik/cycle-typecast --prefer-dist
+composer require vjik/cycle-typecast
 ```
 
 ## General Usage
@@ -111,6 +111,26 @@ new DateTimeImmutableToIntegerType();
 Entity value: `DateTimeImmutable`.
 
 Database value: timestamp as string (example, `1609658768`).
+
+### `IntegerEnumType`
+
+```php
+new IntegerEnumType(IntegerEnum::class);
+```
+
+Entity value: integer typed enumeration.
+
+Database value: enumeration value of integer type.
+
+### `StringEnumType`
+
+```php
+new StringEnumType(StringEnum::class);
+```
+
+Entity value: string typed enumeration.
+
+Database value: enumeration value of string type.
 
 ### `UuidStringToBytesType`
 

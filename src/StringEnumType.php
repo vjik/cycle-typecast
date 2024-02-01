@@ -4,21 +4,16 @@ declare(strict_types=1);
 
 namespace Vjik\CycleTypecast;
 
+use BackedEnum;
 use InvalidArgumentException;
 
-final class ArrayToStringType implements TypeInterface
+final class StringEnumType implements TypeInterface
 {
     /**
-     * @psalm-var non-empty-string
+     * @psalm-param class-string<BackedEnum> $enumClass
      */
-    private string $delimiter;
-
-    /**
-     * @psalm-param non-empty-string $delimiter
-     */
-    public function __construct(string $delimiter)
+    public function __construct(private string $enumClass)
     {
-        $this->delimiter = $delimiter;
     }
 
     public function convertToDatabaseValue(mixed $value): mixed
@@ -27,12 +22,11 @@ final class ArrayToStringType implements TypeInterface
             return null;
         }
 
-        if (!is_array($value)) {
+        if (!$value instanceof $this->enumClass) {
             throw new InvalidArgumentException('Incorrect value.');
         }
 
-        /** @psalm-suppress MixedArgumentTypeCoercion */
-        return implode($this->delimiter, $value);
+        return $value->value;
     }
 
     public function convertToPhpValue(mixed $value): mixed
@@ -45,10 +39,6 @@ final class ArrayToStringType implements TypeInterface
             throw new InvalidArgumentException('Incorrect value.');
         }
 
-        if ($value === '') {
-            return [];
-        }
-
-        return explode($this->delimiter, $value);
+        return $this->enumClass::from($value);
     }
 }

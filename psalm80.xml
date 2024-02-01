@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <psalm
     errorLevel="1"
-    findUnusedBaselineEntry="true"
-    findUnusedCode="false"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
@@ -11,6 +9,8 @@
         <directory name="src" />
         <ignoreFiles>
             <directory name="vendor" />
+            <file name="src/IntegerEnumType.php" />
+            <file name="src/StringEnumType.php" />
         </ignoreFiles>
     </projectFiles>
 </psalm>

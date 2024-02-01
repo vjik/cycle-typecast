@@ -1,8 +1,20 @@
 on:
   pull_request:
+    paths-ignore:
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - '.gitignore'
+      - '.gitattributes'
+      - 'psalm.xml'
+
   push:
-    branches:
-      - "master"
+    branches: ['master']
+    paths-ignore:
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - '.gitignore'
+      - '.gitattributes'
+      - 'psalm.xml'
 
 name: mutation test
 
@@ -18,7 +30,7 @@ jobs:
           - ubuntu-latest
 
         php:
-          - 8.1
+          - '8.1'
 
     steps:
       - name: Checkout
@@ -50,6 +62,6 @@ jobs:
 
       - name: Run infection
         run: |
-          vendor/bin/roave-infection-static-analysis-plugin -j2 --ignore-msi-with-no-mutations --only-covered
+          vendor/bin/roave-infection-static-analysis-plugin --threads=2 --ignore-msi-with-no-mutations --only-covered
         env:
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
