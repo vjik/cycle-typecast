@@ -1,5 +1,9 @@
 # Cycle Typecast Change Log
 
+## 2.1.0
+
+- New #3: Add enum types
+
 ## 2.0.0 May 24, 2022
 
 - New #2: Add abstract typecast handler
