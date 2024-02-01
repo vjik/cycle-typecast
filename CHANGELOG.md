@@ -1,8 +1,8 @@
 # Cycle Typecast Change Log
 
-## 2.1.0
+## 2.1.0 February 01, 2024
 
-- New #3: Add enum types
+- New #3: Add enum types `IntegerEnumType` and `StringEnumType`
 
 ## 2.0.0 May 24, 2022
 
