@@ -33,6 +33,13 @@ final class IntegerEnumTypeTest extends TestCase
         $this->assertSame($entityValue, $type->convertToPhpValue($databaseValue));
     }
 
+    public function testStringDatabaseValue(): void
+    {
+        $type = new IntegerEnumType(IntegerEnum::class);
+
+        $this->assertSame(IntegerEnum::B, $type->convertToPhpValue('2'));
+    }
+
     public function testConvertToDatabaseValueIncorrectValue(): void
     {
         $type = new IntegerEnumType(IntegerEnum::class);
