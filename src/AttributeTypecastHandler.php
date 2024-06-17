@@ -7,6 +7,7 @@ namespace Vjik\CycleTypecast;
 use Cycle\ORM\Parser\CastableInterface;
 use Cycle\ORM\Parser\UncastableInterface;
 use Cycle\ORM\SchemaInterface;
+use ReflectionAttribute;
 use ReflectionClass;
 
 final class AttributeTypecastHandler implements CastableInterface, UncastableInterface
@@ -23,7 +24,7 @@ final class AttributeTypecastHandler implements CastableInterface, UncastableInt
         $entityClass = $schema->define($role, SchemaInterface::ENTITY);
         $reflection = new ReflectionClass($entityClass);
         foreach ($reflection->getProperties() as $property) {
-            $attributes = $property->getAttributes(TypeInterface::class);
+            $attributes = $property->getAttributes(TypeInterface::class, ReflectionAttribute::IS_INSTANCEOF);
             if (empty($attributes)) {
                 continue;
             }
