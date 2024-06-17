@@ -10,6 +10,8 @@ use Cycle\ORM\SchemaInterface;
 use ReflectionAttribute;
 use ReflectionClass;
 
+use function class_exists;
+
 final class AttributeTypecastHandler implements CastableInterface, UncastableInterface
 {
     /**
@@ -20,15 +22,16 @@ final class AttributeTypecastHandler implements CastableInterface, UncastableInt
 
     public function __construct(SchemaInterface $schema, string $role)
     {
-        /** @psalm-var class-string $entityClass */
         $entityClass = $schema->define($role, SchemaInterface::ENTITY);
-        $reflection = new ReflectionClass($entityClass);
-        foreach ($reflection->getProperties() as $property) {
-            $attributes = $property->getAttributes(TypeInterface::class, ReflectionAttribute::IS_INSTANCEOF);
-            if (empty($attributes)) {
-                continue;
+        if (class_exists($entityClass)) {
+            $reflection = new ReflectionClass($entityClass);
+            foreach ($reflection->getProperties() as $property) {
+                $attributes = $property->getAttributes(TypeInterface::class, ReflectionAttribute::IS_INSTANCEOF);
+                if (empty($attributes)) {
+                    continue;
+                }
+                $this->types[$property->getName()] = $attributes[0]->newInstance();
             }
-            $this->types[$property->getName()] = $attributes[0]->newInstance();
         }
     }
 
