@@ -27,6 +27,10 @@ composer require vjik/cycle-typecast
 ### Attributes
 
 ```php
+use Vjik\CycleTypecast\AttributeTypecastHandler;
+use Vjik\CycleTypecast\UuidString\UuidStringToBytesType;
+use Vjik\CycleTypecast\DateTimeImmutable\DateTimeImmutableToIntegerType;
+
 #[Entity(
     // ...
     typecast: AttributeTypecastHandler::class,
@@ -36,8 +40,8 @@ final class User
     // ...
 
     #[Column(type: 'primary', primary: true)]
-    #[UuidToBytesType]
-    private UuidInterface $id;
+    #[UuidStringToBytesType]
+    private string $id;
 
     #[Column(type: 'int')]
     #[DateTimeImmutableToIntegerType]
