@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Vjik\CycleTypecast\DateTimeImmutable;
 
+use Attribute;
 use DateTimeImmutable;
 use InvalidArgumentException;
 
 use function is_int;
 use function is_string;
 
+#[Attribute(Attribute::TARGET_PROPERTY)]
 final class DateTimeImmutableToIntegerType extends DateTimeImmutableType
 {
     protected function toDatabaseValue(DateTimeImmutable $value): string
