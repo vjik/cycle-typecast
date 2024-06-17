@@ -2,7 +2,7 @@
 
 ## 2.2.0 June 17, 2024
 
-- New #4: Add `AttributeTypecastHandler`
+- New #5: Add `AttributeTypecastHandler`
 
 ## 2.1.0 February 01, 2024
 
