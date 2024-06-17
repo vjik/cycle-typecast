@@ -25,6 +25,26 @@ composer require vjik/cycle-typecast
 
 ## General Usage
 
+### Attributes
+
+```php
+#[Entity(
+    // ...
+    typecast: AttributeTypecastHandler::class,
+)]
+final class User
+{
+    // ...
+
+    #[Column(type: 'primary', primary: true)]
+    #[UuidToBytesType]
+    private UuidInterface $id;
+
+    #[Column(type: 'int')]
+    #[DateTimeImmutableToIntegerType]
+    private DateTimeImmutable $createDate;
+```
+
 ### Custom Typecast Handler
 
 ```php
