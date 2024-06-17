@@ -13,4 +13,7 @@
             <file name="src/StringEnumType.php" />
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <MixedAssignment errorLevel="suppress" />
+    </issueHandlers>
 </psalm>

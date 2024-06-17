@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Vjik\CycleTypecast\UuidString;
 
+use Attribute;
 use Exception;
 use InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
+#[Attribute(Attribute::TARGET_PROPERTY)]
 final class UuidStringToBytesType extends UuidStringType
 {
     protected function toDatabaseValue(UuidInterface $value): string

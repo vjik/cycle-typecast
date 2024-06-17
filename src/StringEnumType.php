@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Vjik\CycleTypecast;
 
+use Attribute;
 use BackedEnum;
 use InvalidArgumentException;
 
+#[Attribute(Attribute::TARGET_PROPERTY)]
 final class StringEnumType implements TypeInterface
 {
     /**
