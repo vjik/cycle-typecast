@@ -9,10 +9,9 @@
 
 The package provides:
 
-- `Typecaster` that help typecast data in [Cycle ORM](https://cycle-orm.dev/);
-- `TypeInterface` that must be implemented by classes used in `Typecaster`;
-- abstract `TypecastHandler` that used `Typecaster` for typecast data;
+- `Typecaster` that help typecast data in [Cycle ORM](https://cycle-orm.dev/) and abstract `TypecastHandler` that used it;
 - `AttributeTypecastHandler` that use attributes for typecast data;
+- `TypeInterface` that must be implemented by classes used in `Typecaster` and `AttributeTypecastHandler`;
 - classes for `DateTimeImmutable`, `UUID`, `Array` and `Enum` types.
 
 ## Installation
