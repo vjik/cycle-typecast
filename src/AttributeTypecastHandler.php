@@ -23,7 +23,7 @@ final class AttributeTypecastHandler implements CastableInterface, UncastableInt
     public function __construct(SchemaInterface $schema, string $role)
     {
         $entityClass = $schema->define($role, SchemaInterface::ENTITY);
-        if (class_exists($entityClass)) {
+        if (is_string($entityClass) && class_exists($entityClass)) {
             $reflection = new ReflectionClass($entityClass);
             foreach ($reflection->getProperties() as $property) {
                 $attributes = $property->getAttributes(TypeInterface::class, ReflectionAttribute::IS_INSTANCEOF);
