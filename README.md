@@ -1,8 +1,8 @@
 # Cycle Typecast
 
-[![Latest Stable Version](https://poser.pugx.org/vjik/cycle-typecast/v/stable.png)](https://packagist.org/packages/vjik/cycle-typecast)
-[![Total Downloads](https://poser.pugx.org/vjik/cycle-typecast/downloads.png)](https://packagist.org/packages/vjik/cycle-typecast)
-[![Build status](https://github.com/vjik/cycle-typecast/workflows/build/badge.svg)](https://github.com/vjik/cycle-typecast/actions?query=workflow%3Abuild)
+[![Latest Stable Version](https://poser.pugx.org/vjik/cycle-typecast/v)](https://packagist.org/packages/vjik/cycle-typecast)
+[![Total Downloads](https://poser.pugx.org/vjik/cycle-typecast/downloads)](https://packagist.org/packages/vjik/cycle-typecast)
+[![Build status](https://github.com/vjik/cycle-typecast/actions/workflows/build.yml/badge.svg)](https://github.com/vjik/cycle-typecast/actions/workflows/build.yml)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fvjik%2Fcycle-typecast%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/vjik/cycle-typecast/master)
 [![static analysis](https://github.com/vjik/cycle-typecast/workflows/static%20analysis/badge.svg)](https://github.com/vjik/cycle-typecast/actions?query=workflow%3A%22static+analysis%22)
 [![psalm-level](https://shepherd.dev/github/vjik/cycle-typecast/level.svg)](https://shepherd.dev/github/vjik/cycle-typecast)
