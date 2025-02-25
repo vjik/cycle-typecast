@@ -1,5 +1,9 @@
 # Cycle Typecast Change Log
 
+## 2.2.1 under development
+
+- Chg #7: Change PHP constraint in `composer.json` to `8.0 - 8.4`
+
 ## 2.2.0 June 17, 2024
 
 - New #5: Add `AttributeTypecastHandler`
