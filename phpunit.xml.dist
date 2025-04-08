@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         bootstrap="vendor/autoload.php"
          colors="true"
-         verbose="true"
          failOnRisky="true"
          failOnWarning="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
          stopOnFailure="false"
          executionOrder="random"
-         resolveDependencies="true">
+         resolveDependencies="true"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         cacheDirectory=".phpunit.cache"
+         displayDetailsOnPhpunitDeprecations="true"
+>
     <php>
-        <ini name="error_reporting" value="-1"/>
+        <ini name="error_reporting" value="-1" />
     </php>
 
     <testsuites>
@@ -19,14 +20,11 @@
             <directory>./tests</directory>
             <exclude>./tests/TestEnvironments</exclude>
         </testsuite>
-        <testsuite name="PHP 8.1+ tests">
-            <directory phpVersion="8.1" phpVersionOperator=">=">./tests/TestEnvironments/Php81</directory>
-        </testsuite>
     </testsuites>
 
-    <coverage>
+    <source>
         <include>
             <directory>./src</directory>
         </include>
-    </coverage>
+    </source>
 </phpunit>
