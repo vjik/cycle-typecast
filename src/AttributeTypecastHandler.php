@@ -50,7 +50,10 @@ final class AttributeTypecastHandler implements CastableInterface, UncastableInt
         /** @psalm-var array<non-empty-string, mixed> $data */
         foreach ($data as $key => $value) {
             if (isset($this->types[$key])) {
-                $data[$key] = $this->types[$key]->convertToPhpValue($value);
+                $data[$key] = $this->types[$key]->convertToPhpValue(
+                    $value,
+                    new CastContext($key, $data),
+                );
             }
         }
         return $data;
@@ -61,7 +64,10 @@ final class AttributeTypecastHandler implements CastableInterface, UncastableInt
         /** @psalm-var array<non-empty-string, mixed> $data */
         foreach ($data as $key => $value) {
             if (isset($this->types[$key])) {
-                $data[$key] = $this->types[$key]->convertToDatabaseValue($value);
+                $data[$key] = $this->types[$key]->convertToDatabaseValue(
+                    $value,
+                    new UncastContext($key, $data),
+                );
             }
         }
         return $data;

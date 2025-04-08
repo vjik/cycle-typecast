@@ -8,11 +8,13 @@ use Exception;
 use InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Vjik\CycleTypecast\CastContext;
 use Vjik\CycleTypecast\TypeInterface;
+use Vjik\CycleTypecast\UncastContext;
 
 abstract class UuidStringType implements TypeInterface
 {
-    public function convertToDatabaseValue(mixed $value): mixed
+    public function convertToDatabaseValue(mixed $value, UncastContext $context): mixed
     {
         if ($value === null) {
             return null;
@@ -33,7 +35,7 @@ abstract class UuidStringType implements TypeInterface
 
     abstract protected function toDatabaseValue(UuidInterface $value): mixed;
 
-    public function convertToPhpValue(mixed $value): mixed
+    public function convertToPhpValue(mixed $value, CastContext $context): mixed
     {
         if ($value === null) {
             return null;

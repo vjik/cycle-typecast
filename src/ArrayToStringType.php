@@ -23,7 +23,7 @@ final class ArrayToStringType implements TypeInterface
         $this->delimiter = $delimiter;
     }
 
-    public function convertToDatabaseValue(mixed $value): mixed
+    public function convertToDatabaseValue(mixed $value, UncastContext $context): mixed
     {
         if ($value === null) {
             return null;
@@ -37,7 +37,7 @@ final class ArrayToStringType implements TypeInterface
         return implode($this->delimiter, $value);
     }
 
-    public function convertToPhpValue(mixed $value): mixed
+    public function convertToPhpValue(mixed $value, CastContext $context): mixed
     {
         if ($value === null) {
             return null;

@@ -9,6 +9,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Vjik\CycleTypecast\IntegerEnumType;
+use Vjik\CycleTypecast\Tests\Support\ContextFactory;
 use Vjik\CycleTypecast\Tests\Support\IntegerEnum;
 use Vjik\CycleTypecast\Tests\Support\StringEnum;
 
@@ -28,30 +29,32 @@ final class IntegerEnumTypeTest extends TestCase
     {
         $type = new IntegerEnumType(IntegerEnum::class);
 
-        $this->assertSame($databaseValue, $type->convertToDatabaseValue($entityValue));
-        $this->assertSame($entityValue, $type->convertToPhpValue($databaseValue));
+        $this->assertSame($databaseValue, $type->convertToDatabaseValue($entityValue, ContextFactory::uncastContext()));
+        $this->assertSame($entityValue, $type->convertToPhpValue($databaseValue, ContextFactory::castContext()));
     }
 
     public function testStringDatabaseValue(): void
     {
         $type = new IntegerEnumType(IntegerEnum::class);
 
-        $this->assertSame(IntegerEnum::B, $type->convertToPhpValue('2'));
+        $this->assertSame(IntegerEnum::B, $type->convertToPhpValue('2', ContextFactory::castContext()));
     }
 
     public function testConvertToDatabaseValueIncorrectValue(): void
     {
         $type = new IntegerEnumType(IntegerEnum::class);
+        $context = ContextFactory::uncastContext();
 
         $this->expectException(InvalidArgumentException::class);
-        $type->convertToDatabaseValue(StringEnum::A);
+        $type->convertToDatabaseValue(StringEnum::A, $context);
     }
 
     public function testConvertToPhpValueWithIntegerValue(): void
     {
         $type = new IntegerEnumType(IntegerEnum::class);
+        $context = ContextFactory::castContext();
 
         $this->expectException(InvalidArgumentException::class);
-        $type->convertToPhpValue(true);
+        $type->convertToPhpValue(true, $context);
     }
 }
