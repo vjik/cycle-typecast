@@ -2,7 +2,8 @@
 
 ## 2.2.1 under development
 
-- Chg #7: Change PHP constraint in `composer.json` to `8.0 - 8.4`
+- Chg #7, #8: Change PHP constraint in `composer.json` to `8.1 - 8.4`
+- Chg #8: Bump minimal PHP version to 8.1
 
 ## 2.2.0 June 17, 2024
 

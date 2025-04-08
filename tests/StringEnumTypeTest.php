@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Vjik\CycleTypecast\Tests\TestEnvironments\Php81;
+namespace Vjik\CycleTypecast\Tests;
 
 use BackedEnum;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Vjik\CycleTypecast\StringEnumType;
-use Vjik\CycleTypecast\Tests\TestEnvironments\Php81\Support\IntegerEnum;
-use Vjik\CycleTypecast\Tests\TestEnvironments\Php81\Support\StringEnum;
+use Vjik\CycleTypecast\Tests\Support\IntegerEnum;
+use Vjik\CycleTypecast\Tests\Support\StringEnum;
 
 final class StringEnumTypeTest extends TestCase
 {
-    public function dataBase(): array
+    public static function dataBase(): array
     {
         return [
             [null, null],
@@ -22,9 +23,7 @@ final class StringEnumTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider dataBase
-     */
+    #[DataProvider('dataBase')]
     public function testBase(?string $databaseValue, ?BackedEnum $entityValue): void
     {
         $type = new StringEnumType(StringEnum::class);

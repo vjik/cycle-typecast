@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Vjik\CycleTypecast\Tests;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Vjik\CycleTypecast\ArrayToStringType;
 
 final class ArrayToStringTypeTest extends TestCase
 {
-    public function dataBase(): array
+    public static function dataBase(): array
     {
         return [
             'empty' => [
@@ -28,12 +29,7 @@ final class ArrayToStringTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider dataBase
-     *
-     * @param string|null $databaseValue
-     * @param array|null $entityValue
-     */
+    #[DataProvider('dataBase')]
     public function testBase(?string $databaseValue, ?array $entityValue): void
     {
         $type = new ArrayToStringType(',');
