@@ -9,6 +9,5 @@ final class UncastContext
     public function __construct(
         public readonly string $property,
         public readonly array $data,
-    ) {
-    }
+    ) {}
 }
