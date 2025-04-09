@@ -6,8 +6,11 @@ namespace Vjik\CycleTypecast\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
+use Vjik\CycleTypecast\Tests\Support\StubType;
 use Vjik\CycleTypecast\Typecaster;
 use Vjik\CycleTypecast\UuidString\UuidStringToBytesType;
+
+use function PHPUnit\Framework\assertSame;
 
 final class TypecasterTest extends TestCase
 {
@@ -73,5 +76,47 @@ final class TypecasterTest extends TestCase
 
         $data = $typecaster->prepareBeforeHydrate(['id' => null]);
         $this->assertSame(['id' => null], $data);
+    }
+
+    public function testUncastContext(): void
+    {
+        $type = new StubType();
+
+        $typecaster = new Typecaster(['id' => $type]);
+        $typecaster->prepareAfterExtract([
+            'id' => '1f2d3897-a226-4eec-bd2c-d0145ef25df9',
+            'city' => 'Voronezh',
+        ]);
+
+        assertSame('1f2d3897-a226-4eec-bd2c-d0145ef25df9', $type->getToDatabaseValue());
+        assertSame('id', $type->getUncastContext()?->property);
+        assertSame(
+            [
+                'id' => '1f2d3897-a226-4eec-bd2c-d0145ef25df9',
+                'city' => 'Voronezh',
+            ],
+            $type->getUncastContext()?->data,
+        );
+    }
+
+    public function testCastContext(): void
+    {
+        $type = new StubType();
+
+        $typecaster = new Typecaster(['id' => $type]);
+        $typecaster->prepareBeforeHydrate([
+            'id' => '1f2d3897-a226-4eec-bd2c-d0145ef25df9',
+            'city' => 'Voronezh',
+        ]);
+
+        assertSame('1f2d3897-a226-4eec-bd2c-d0145ef25df9', $type->getToPhpValue());
+        assertSame('id', $type->getCastContext()?->property);
+        assertSame(
+            [
+                'id' => '1f2d3897-a226-4eec-bd2c-d0145ef25df9',
+                'city' => 'Voronezh',
+            ],
+            $type->getCastContext()?->data,
+        );
     }
 }
