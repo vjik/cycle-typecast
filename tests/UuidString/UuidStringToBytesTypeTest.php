@@ -7,6 +7,7 @@ namespace Vjik\CycleTypecast\Tests\UuidString;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
+use Vjik\CycleTypecast\Tests\Support\ContextFactory;
 use Vjik\CycleTypecast\UuidString\UuidStringToBytesType;
 
 final class UuidStringToBytesTypeTest extends TestCase
@@ -20,27 +21,29 @@ final class UuidStringToBytesTypeTest extends TestCase
 
         $type = new UuidStringToBytesType();
 
-        $value = $type->convertToDatabaseValue($entityValue);
+        $value = $type->convertToDatabaseValue($entityValue, ContextFactory::uncastContext());
         $this->assertSame($databaseValue, $value);
 
-        $value = $type->convertToPhpValue($databaseValue);
+        $value = $type->convertToPhpValue($databaseValue, ContextFactory::castContext());
         $this->assertSame($entityValue, $value);
     }
 
     public function testConertToPhpValueIncorrectBytesValue(): void
     {
         $type = new UuidStringToBytesType();
+        $context = ContextFactory::castContext();
 
         $this->expectException(InvalidArgumentException::class);
-        $type->convertToPhpValue('incorrect');
+        $type->convertToPhpValue('incorrect', $context);
     }
 
 
-    public function testConertToPhpValueWithIntegerValue(): void
+    public function testConvertToPhpValueWithIntegerValue(): void
     {
         $type = new UuidStringToBytesType();
+        $context = ContextFactory::castContext();
 
         $this->expectException(InvalidArgumentException::class);
-        $type->convertToPhpValue(42);
+        $type->convertToPhpValue(42, $context);
     }
 }

@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Vjik\CycleTypecast\ArrayToStringType;
+use Vjik\CycleTypecast\Tests\Support\ContextFactory;
 
 final class ArrayToStringTypeTest extends TestCase
 {
@@ -34,23 +35,25 @@ final class ArrayToStringTypeTest extends TestCase
     {
         $type = new ArrayToStringType(',');
 
-        $this->assertSame($databaseValue, $type->convertToDatabaseValue($entityValue));
-        $this->assertSame($entityValue, $type->convertToPhpValue($databaseValue));
+        $this->assertSame($databaseValue, $type->convertToDatabaseValue($entityValue, ContextFactory::uncastContext()));
+        $this->assertSame($entityValue, $type->convertToPhpValue($databaseValue, ContextFactory::castContext()));
     }
 
     public function testConvertToDatabaseValueIncorrectValue(): void
     {
         $type = new ArrayToStringType(',');
+        $context = ContextFactory::uncastContext();
 
         $this->expectException(InvalidArgumentException::class);
-        $type->convertToDatabaseValue(42);
+        $type->convertToDatabaseValue(42, $context);
     }
 
-    public function testConertToPhpValueWithIntegerValue(): void
+    public function testConvertToPhpValueWithIntegerValue(): void
     {
         $type = new ArrayToStringType(',');
+        $context = ContextFactory::castContext();
 
         $this->expectException(InvalidArgumentException::class);
-        $type->convertToPhpValue(42);
+        $type->convertToPhpValue(42, $context);
     }
 }

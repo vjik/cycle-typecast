@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vjik\CycleTypecast\Tests;
+namespace Vjik\CycleTypecast\Tests\AttributeTypecastHandler;
 
 use Cycle\ORM\SchemaInterface;
 use PHPUnit\Framework\TestCase;

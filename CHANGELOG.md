@@ -1,9 +1,10 @@
 # Cycle Typecast Change Log
 
-## 2.2.1 under development
+## 3.0.0 under development
 
 - Chg #7, #8: Change PHP constraint in `composer.json` to `8.1 - 8.4`
 - Chg #8: Bump minimal PHP version to 8.1
+- New #9: Add context to `TypeInterface` convert methods
 
 ## 2.2.0 June 17, 2024
 

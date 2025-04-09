@@ -6,11 +6,13 @@ namespace Vjik\CycleTypecast\DateTimeImmutable;
 
 use DateTimeImmutable;
 use InvalidArgumentException;
+use Vjik\CycleTypecast\CastContext;
 use Vjik\CycleTypecast\TypeInterface;
+use Vjik\CycleTypecast\UncastContext;
 
 abstract class DateTimeImmutableType implements TypeInterface
 {
-    public function convertToDatabaseValue(mixed $value): mixed
+    public function convertToDatabaseValue(mixed $value, UncastContext $context): mixed
     {
         if ($value === null) {
             return null;
@@ -25,7 +27,7 @@ abstract class DateTimeImmutableType implements TypeInterface
 
     abstract protected function toDatabaseValue(DateTimeImmutable $value): mixed;
 
-    public function convertToPhpValue(mixed $value): mixed
+    public function convertToPhpValue(mixed $value, CastContext $context): mixed
     {
         if ($value === null) {
             return null;

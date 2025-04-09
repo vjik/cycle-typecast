@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Vjik\CycleTypecast;
 
+use function array_key_exists;
+
 final class Typecaster
 {
     /**
@@ -23,8 +25,10 @@ final class Typecaster
     {
         foreach ($this->config as $column => $type) {
             if (array_key_exists($column, $data)) {
-                /** @var mixed */
-                $data[$column] = $type->convertToDatabaseValue($data[$column]);
+                $data[$column] = $type->convertToDatabaseValue(
+                    $data[$column],
+                    new UncastContext($column, $data),
+                );
             }
         }
         return $data;
@@ -34,8 +38,10 @@ final class Typecaster
     {
         foreach ($this->config as $column => $type) {
             if (array_key_exists($column, $data)) {
-                /** @var mixed */
-                $data[$column] = $type->convertToPhpValue($data[$column]);
+                $data[$column] = $type->convertToPhpValue(
+                    $data[$column],
+                    new CastContext($column, $data),
+                );
             }
         }
         return $data;

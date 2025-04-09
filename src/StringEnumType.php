@@ -18,7 +18,7 @@ final class StringEnumType implements TypeInterface
     {
     }
 
-    public function convertToDatabaseValue(mixed $value): mixed
+    public function convertToDatabaseValue(mixed $value, UncastContext $context): mixed
     {
         if ($value === null) {
             return null;
@@ -31,7 +31,7 @@ final class StringEnumType implements TypeInterface
         return $value->value;
     }
 
-    public function convertToPhpValue(mixed $value): mixed
+    public function convertToPhpValue(mixed $value, CastContext $context): mixed
     {
         if ($value === null) {
             return null;
