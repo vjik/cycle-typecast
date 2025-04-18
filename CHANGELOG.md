@@ -1,6 +1,6 @@
 # Cycle Typecast Change Log
 
-## 3.0.0 under development
+## 3.0.0 April 18, 2025
 
 - Chg #7, #8: Change PHP constraint in `composer.json` to `8.1 - 8.4`
 - Chg #8: Bump minimal PHP version to 8.1
