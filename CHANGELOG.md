@@ -1,5 +1,9 @@
 # Cycle Typecast Change Log
 
+## 3.0.1 March 16, 2026
+
+- Enh #10: Add PHP 8.5 support
+
 ## 3.0.0 April 18, 2025
 
 - Chg #7, #8: Change PHP constraint in `composer.json` to `8.1 - 8.4`
