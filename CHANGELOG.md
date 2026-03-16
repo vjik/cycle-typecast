@@ -1,6 +1,6 @@
 # Cycle Typecast Change Log
 
-## 3.0.1 under development
+## 3.0.1 March 16, 2026
 
 - Enh #10: Add PHP 8.5 support
 
